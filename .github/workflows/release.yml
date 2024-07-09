@@ -21,7 +21,7 @@ jobs:
           cd apps
           # Increment the version in package.json
            pr_title="${{ github.event.pull_request.title }}"
-          echo 11111111111111111
+          echo 11111111111111111 ${{$pr_title}}
           if [[ $pr_title == feat/* ]]; then
             npm version major 
           elif [[ $pr_title == fix/* ]]; then
