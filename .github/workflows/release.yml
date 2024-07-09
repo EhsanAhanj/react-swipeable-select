@@ -27,23 +27,26 @@ jobs:
             echo "PR starts with 'feat': Do something"
             npm version major 
           elif [[ $pr_title == fix/* ]]; then
+            echo "PR starts with 'fix': Do something"
             npm version minor 
           elif [[ $pr_title == chore/* ]]; then
+            echo "PR starts with 'chore': Do something"
             npm version patch 
           else
             npm version patch 
           NEW_VERSION=$(node -p "require('./package.json').version")
           echo $NEW_VERSION
           # Commit the updated package.json
-          git tag $NEW_VERSION
           cd ..
           git config user.name "Ehsan.Aj"
           git config user.email "eng.ahanj@gmail.com"
           git add apps/package.json
-          git commit -m "Bump package version"
           echo Push the changes back to the repo
-          git log --oneline 
-          git push --follow-tags
+          git log --oneline
+          git tag $NEW_VERSION
+          git tag 
+          git commit -m "Bump package version"
+          git push && git push --tags
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
