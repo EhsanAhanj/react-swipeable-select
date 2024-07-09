@@ -21,8 +21,9 @@ jobs:
           cd apps
           # Increment the version in package.json
            pr_title="${{ github.event.pull_request.title }}"
-          echo 11111111111111111 pr_title
+          echo $pr_title
           if [[ $pr_title == feat/* ]]; then
+            echo "PR starts with 'feat': Do something"
             npm version major 
           elif [[ $pr_title == fix/* ]]; then
             npm version minor 
@@ -43,5 +44,6 @@ jobs:
           echo ${{ secrets.GITHUB_TOKEN }}
           sleep 50 
           git push
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
