@@ -20,7 +20,15 @@ jobs:
         run: |
           cd apps
           # Increment the version in package.json
-          npm version patch --no-git-tag-version
+           pr_title="${{ github.event.pull_request.title }}"
+          if [[ $pr_title == feat/* ]]; then
+            npm version major 
+          elif [[ $pr_title == fix/* ]]; then
+            npm version minor 
+          elif [[ $pr_title == chore/* ]]; then
+            npm version patch 
+          else
+            npm version patch 
           # Commit the updated package.json
           cd ..
           git config user.name "Ehsan.Aj"
