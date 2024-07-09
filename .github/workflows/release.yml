@@ -19,11 +19,14 @@ jobs:
           npm version patch --no-git-tag-version
           # Commit the updated package.json
           cd ..
+          ec
           git config user.name "Ehsan.Aj"
           git config user.email "eng.ahanj@gmail.com"
           git add apps/package.json
           git commit -m "Bump package version"
           # Push the changes back to the repo
+          echo ${{ secrets.GITHUB_TOKEN }}
+          sleep 1000 
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
