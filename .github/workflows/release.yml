@@ -20,31 +20,34 @@ jobs:
         run: |
           # Increment the version in package.json
            pr_title="${{ github.event.pull_request.title }}"
-          echo $pr_title
-          cd apps/
-          if [[ $pr_title =~ ^(feat|Feat).* ]]; then
-            echo "PR starts with 'feat':"
-            npm version major 
-          elif [[ ${pr_title,,} == fix/* ]]; then
-            echo "PR starts with 'fix':"
-            npm version minor 
-          elif [[ ${pr_title,,} == chore/* ]]; then
-            echo "PR starts with 'chore':"
-            npm version patch 
-          else
-            npm version patch 
-          fi
-          NEW_VERSION=$(node -p "require('./package.json').version")
-          # Commit the updated package.json
-          cd ..
-          git config user.name "Ehsan.Aj"
-          git config user.email "eng.ahanj@gmail.com"
-          git add apps/package.json
-          git log --oneline
-          git tag $NEW_VERSION
-          git tag 
-          git commit -m "Bump package version"
-          git push && git push --tags
-          fi
+           echo $pr_title
+           
+           cd apps/
+           
+           if [[ $pr_title =~ ^(feat|Feat).* ]]; then
+               echo "PR starts with 'feat':"
+               npm version major --no-git-tag-version
+           elif [[ ${pr_title,,} == fix/* ]]; then
+               echo "PR starts with 'fix':"
+               npm version minor --no-git-tag-version
+           elif [[ ${pr_title,,} == chore/* ]]; then
+               echo "PR starts with 'chore':"
+               npm version patch --no-git-tag-version
+           else
+               echo "PR title does not match any expected pattern."
+               npm version patch --no-git-tag-version
+           fi
+           
+           NEW_VERSION=$(node -p "require('./package.json').version")
+           # Commit the updated package.json
+           cd ..
+           git config user.name "Ehsan.Aj"
+           git config user.email "eng.ahanj@gmail.com"
+           git add apps/package.json
+           git log --oneline
+           git tag $NEW_VERSION
+           git tag
+           git commit -m "Bump package version"
+           git push && git push --tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
