@@ -20,30 +20,27 @@ jobs:
         run: |
           # Increment the version in package.json
            pr_title="${{ github.event.pull_request.title }}"
-
           echo $pr_title
           cd apps/
           if [[ $pr_title == Feat/* ]]; then
-            echo "PR starts with 'feat': Do something"
+            echo "PR starts with 'feat':"
             npm version major 
           elif [[ $pr_title == fix/* ]]; then
-            echo "PR starts with 'fix': Do something"
+            echo "PR starts with 'fix':"
             npm version minor 
           elif [[ $pr_title == chore/* ]]; then
-            echo "PR starts with 'chore': Do something"
+            echo "PR starts with 'chore':"
             npm version patch 
           else
             npm version patch 
           NEW_VERSION=$(node -p "require('./package.json').version")
-          echo $NEW_VERSION
           # Commit the updated package.json
           cd ..
           git config user.name "Ehsan.Aj"
           git config user.email "eng.ahanj@gmail.com"
           git add apps/package.json
-          echo Push the changes back to the repo
           git log --oneline
-          git tag $NEW_VERSION
+          git tag $NEW_VERSION -m $pr_title
           git tag 
           git commit -m "Bump package version"
           git push && git push --tags
