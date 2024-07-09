@@ -4,9 +4,11 @@ permissions:
   contents: write
 
 on:
-  pull_request:
-    types: [closed]
-
+    pull_request:
+    branches:
+      - main
+    types:
+      - closed
 jobs:
   if_merged:
     if: github.event.pull_request.merged == true
