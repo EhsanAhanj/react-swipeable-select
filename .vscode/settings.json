@@ -1,0 +1,28 @@
+{
+  "css.validate": false,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "headwind.runOnSave": false,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "cSpell.words": [],
+  "[typescriptreact]": {
+    // "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "vmware.vscode-manifest-yaml"
+  },
+  "[dockercompose]": {
+    "editor.autoIndent": "advanced"
+  },
+  "[github-actions-workflow]": {
+    "editor.autoIndent": "advanced"
+  }
+}
