@@ -18,11 +18,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Bump package version
         run: |
-          cd apps
           # Increment the version in package.json
            pr_title="${{ github.event.pull_request.title }}"
           npm config set git-tag-version true
           echo $pr_title
+          cd apps/
           if [[ $pr_title == Feat/* ]]; then
             echo "PR starts with 'feat': Do something"
             npm version major 
