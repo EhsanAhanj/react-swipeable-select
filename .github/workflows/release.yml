@@ -22,7 +22,7 @@ jobs:
           # Increment the version in package.json
            pr_title="${{ github.event.pull_request.title }}"
           echo $pr_title
-          if [[ $pr_title == feat/* ]]; then
+          if [[ $pr_title == Feat/* ]]; then
             echo "PR starts with 'feat': Do something"
             npm version major 
           elif [[ $pr_title == fix/* ]]; then
@@ -41,7 +41,7 @@ jobs:
           # Push the changes back to the repo
           echo 333333333333333333
           echo ${{ secrets.GITHUB_TOKEN }}
-          git push
+          git push --follow-tags
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
