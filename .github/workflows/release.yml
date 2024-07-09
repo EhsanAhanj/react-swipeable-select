@@ -24,16 +24,13 @@ jobs:
           echo $pr_title
           if [[ $pr_title == Feat/* ]]; then
             echo "PR starts with 'feat': Do something"
-            npm version major
-            npm publish
+            npm version major 
           elif [[ $pr_title == fix/* ]]; then
-            npm version minor
-            npm publish
+            npm version minor 
           elif [[ $pr_title == chore/* ]]; then
             npm version patch 
           else
             npm version patch 
-            npm publish
           # Commit the updated package.json
           echo 2222222222222222222222
           git config user.name "Ehsan.Aj"
