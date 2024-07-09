@@ -24,16 +24,18 @@ jobs:
           echo $pr_title
           if [[ $pr_title == Feat/* ]]; then
             echo "PR starts with 'feat': Do something"
-            npm version major 
+            npm version major
+            npm publish
           elif [[ $pr_title == fix/* ]]; then
-            npm version minor 
+            npm version minor
+            npm publish
           elif [[ $pr_title == chore/* ]]; then
             npm version patch 
           else
             npm version patch 
+            npm publish
           # Commit the updated package.json
           echo 2222222222222222222222
-          cd ..
           git config user.name "Ehsan.Aj"
           git config user.email "eng.ahanj@gmail.com"
           git add apps/package.json
@@ -41,7 +43,8 @@ jobs:
           # Push the changes back to the repo
           echo 333333333333333333
           echo ${{ secrets.GITHUB_TOKEN }}
-          git push --tags && yarn publish . --tag $npm_package_version+1 && git push && echo \"Successfully released version $npm_package_version+1!\"
+          git push --tags
+          cd ..
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
