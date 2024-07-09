@@ -42,5 +42,6 @@ jobs:
           echo Push the changes back to the repo
           git log
           git push --force
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
