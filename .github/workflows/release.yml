@@ -1,0 +1,25 @@
+name: Bump Package Version On Merge
+on:
+  pull_request:
+    types: [closed]
+  push:
+    branches:
+      - main
+jobs:
+  bump-package-version:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Bump package version
+        run: |
+          # Increment the version in package.json
+          npm version patch --no-git-tag-version
+          # Commit the updated package.json
+          git add package.json
+          git commit -m "Bump package version"
+          # Push the changes back to the repo
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
