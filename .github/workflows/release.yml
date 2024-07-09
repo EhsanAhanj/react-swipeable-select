@@ -39,10 +39,8 @@ jobs:
           git config user.email "eng.ahanj@gmail.com"
           git add apps/package.json
           git commit -m "Bump package version"
-          # Push the changes back to the repo
-          echo 333333333333333333
-          echo ${{ secrets.GITHUB_TOKEN }}
-          git push --tags
-          fi
+          echo Push the changes back to the repo
+          git log
+          git push --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
