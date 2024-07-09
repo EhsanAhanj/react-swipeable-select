@@ -35,7 +35,7 @@ jobs:
           NEW_VERSION=$(node -p "require('./package.json').version")
           echo $NEW_VERSION
           # Commit the updated package.json
-          git tag v${{ NEW_VERSION }} -m ${{ pr_title }}
+          git tag v${{ $NEW_VERSION }} -m ${{ $pr_title }}
           cd ..
           git config user.name "Ehsan.Aj"
           git config user.email "eng.ahanj@gmail.com"
