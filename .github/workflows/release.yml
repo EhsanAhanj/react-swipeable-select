@@ -21,6 +21,7 @@ jobs:
           cd apps
           # Increment the version in package.json
            pr_title="${{ github.event.pull_request.title }}"
+          npm config set git-tag-version true
           echo $pr_title
           if [[ $pr_title == Feat/* ]]; then
             echo "PR starts with 'feat': Do something"
