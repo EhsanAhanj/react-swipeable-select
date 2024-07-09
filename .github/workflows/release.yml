@@ -33,7 +33,6 @@ jobs:
             npm version patch 
           # Commit the updated package.json
           echo 2222222222222222222222
-          sleep 10 
           cd ..
           git config user.name "Ehsan.Aj"
           git config user.email "eng.ahanj@gmail.com"
@@ -42,7 +41,6 @@ jobs:
           # Push the changes back to the repo
           echo 333333333333333333
           echo ${{ secrets.GITHUB_TOKEN }}
-          sleep 10 
           git push
           fi
         env:
