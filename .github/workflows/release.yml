@@ -22,7 +22,7 @@ jobs:
            pr_title="${{ github.event.pull_request.title }}"
           echo $pr_title
           cd apps/
-          if [[ "$pr_title" =~ ^(feat|Feat):.* ]]; then
+          if [[ $pr_title =~ ^(feat|Feat).* ]]; then
             echo "PR starts with 'feat':"
             npm version major 
           elif [[ ${pr_title,,} == fix/* ]]; then
