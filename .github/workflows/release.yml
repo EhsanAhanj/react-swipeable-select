@@ -20,7 +20,7 @@ jobs:
         run: |
           # Increment the version in package.json
            pr_title="${{ github.event.pull_request.title }}"
-          npm config set git-tag-version true
+
           echo $pr_title
           cd apps/
           if [[ $pr_title == Feat/* ]]; then
@@ -32,6 +32,8 @@ jobs:
             npm version patch 
           else
             npm version patch 
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          echo $NEW_VERSION
           # Commit the updated package.json
           echo 2222222222222222222222
           cd ..
@@ -41,7 +43,7 @@ jobs:
           git commit -m "Bump package version"
           echo Push the changes back to the repo
           git log --oneline 
-          git push && git push --tags
+          git push --follow-tags
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
