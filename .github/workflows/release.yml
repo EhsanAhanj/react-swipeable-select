@@ -24,7 +24,7 @@ jobs:
           git commit -m "Bump package version"
           # Push the changes back to the repo
           echo ${{ secrets.GITHUB_TOKEN }}
-          sleep 1000 
+          sleep 20 
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
