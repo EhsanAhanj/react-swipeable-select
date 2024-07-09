@@ -40,7 +40,7 @@ jobs:
           git config user.email "eng.ahanj@gmail.com"
           git add apps/package.json
           git log --oneline
-          git tag $NEW_VERSION -m $pr_title
+          git tag -a $NEW_VERSION -m $pr_title
           git tag 
           git commit -m "Bump package version"
           git push && git push --tags
