@@ -14,10 +14,12 @@ jobs:
         uses: actions/checkout@v2
       - name: Bump package version
         run: |
+          cd apps
           # Increment the version in package.json
           npm version patch --no-git-tag-version
           # Commit the updated package.json
-          git add package.json
+          cd ..
+          git add apps/package.json
           git commit -m "Bump package version"
           # Push the changes back to the repo
           git push
