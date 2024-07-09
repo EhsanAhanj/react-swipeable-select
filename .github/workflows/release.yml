@@ -6,28 +6,30 @@ permissions:
 on:
   pull_request:
     types: [closed]
-
+  push:
+    branches:
+      - main
 jobs:
-  if_merged:
+  bump-package-version:
     if: github.event.pull_request.merged == true
-     bump-package-version:
-     runs-on: ubuntu-latest
-     steps:
-       - name: Checkout code
-         uses: actions/checkout@v3
-       - name: Bump package version
-         run: |
-           # Increment the version in package.json
-           npm version patch --no-git-tag-version
-           # Commit the updated package.json
-           git config user.name "Ehsan.Aj"
-           git config user.email "eng.ahanj@gmail.com"
-           git add package.json
-           git commit -m "Bump package version"
-           # Push the changes back to the repo
-           echo ${{ secrets.GITHUB_TOKEN }}
-           sleep 10 
-           git push
-         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
- 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Bump package version
+        run: |
+          cd apps
+          # Increment the version in package.json
+          npm version patch --no-git-tag-version
+          # Commit the updated package.json
+          cd ..
+          git config user.name "Ehsan.Aj"
+          git config user.email "eng.ahanj@gmail.com"
+          git add apps/package.json
+          git commit -m "Bump package version"
+          # Push the changes back to the repo
+          echo ${{ secrets.GITHUB_TOKEN }}
+          sleep 20 
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
