@@ -40,8 +40,8 @@ jobs:
           git add apps/package.json
           git commit -m "Bump package version"
           echo Push the changes back to the repo
-          git log
-          git push --force
+          git log --oneline 
+          git push && git push --tags
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
