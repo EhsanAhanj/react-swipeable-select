@@ -19,7 +19,7 @@ jobs:
           npm version patch --no-git-tag-version
           # Commit the updated package.json
           cd ..
-          ec
+
           git config user.name "Ehsan.Aj"
           git config user.email "eng.ahanj@gmail.com"
           git add apps/package.json
