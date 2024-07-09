@@ -33,6 +33,7 @@ jobs:
             npm version patch 
           # Commit the updated package.json
           echo 2222222222222222222222
+          cd ..
           git config user.name "Ehsan.Aj"
           git config user.email "eng.ahanj@gmail.com"
           git add apps/package.json
@@ -41,7 +42,6 @@ jobs:
           echo 333333333333333333
           echo ${{ secrets.GITHUB_TOKEN }}
           git push --tags
-          cd ..
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
