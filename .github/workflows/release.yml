@@ -32,17 +32,15 @@ jobs:
           else
             npm version patch 
           # Commit the updated package.json
-          echo 2222222222222222222222222
-          sleep 50 
+          echo 2222222222222222222222
           cd ..
           git config user.name "Ehsan.Aj"
           git config user.email "eng.ahanj@gmail.com"
           git add apps/package.json
           git commit -m "Bump package version"
           # Push the changes back to the repo
-          echo 3333333333333333333333
+          echo 333333333333333333
           echo ${{ secrets.GITHUB_TOKEN }}
-          sleep 50 
           git push
           fi
         env:
