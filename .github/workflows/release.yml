@@ -5,10 +5,11 @@ permissions:
 
 on:
   pull_request:
-    types: [closed]
-  push:
     branches:
       - main
+    types:
+      - closed
+
 jobs:
   bump-package-version:
     if: github.event.pull_request.merged == true
