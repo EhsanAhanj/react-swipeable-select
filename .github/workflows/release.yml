@@ -1,4 +1,4 @@
-name: Bump Package Version On Merge
+name: Bump Package Version On Merge To Main Branch
 
 permissions:
   contents: write
@@ -27,10 +27,10 @@ jobs:
            if [[ $pr_title =~ ^(feat|Feat).* ]]; then
                echo "PR starts with 'feat':"
                npm version major --no-git-tag-version
-           elif [[ ${pr_title,,} == fix/* ]]; then
+           elif [[ $pr_title =~ ^(fix|Fix).*  ]]; then
                echo "PR starts with 'fix':"
                npm version minor --no-git-tag-version
-           elif [[ ${pr_title,,} == chore/* ]]; then
+           elif [[ $pr_title =~ ^(chore|Chore).*  ]]; then
                echo "PR starts with 'chore':"
                npm version patch --no-git-tag-version
            else
